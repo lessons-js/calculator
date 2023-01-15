@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 const calc = (a, b, op) => {
@@ -40,6 +40,8 @@ const App = () => {
         </div>
       </div>
       <p>Result: {result}</p>
+      <hr />
+      <Heros />
     </div>
   );
 }
@@ -47,6 +49,24 @@ const App = () => {
 const Operator = ({ operator, onClick, selected }) => {
   return (
     <button className='operator-btn' disabled={selected === operator} onClick={() => onClick(operator)}>{operator}</button>
+  )
+}
+
+const Heros = () => {
+  const [heros, setHeros] = useState([])
+
+  useEffect(() => {
+    fetch('https://swapi.dev/api/people/').then(res => res.json()).then(res => {
+      setHeros(res.results);
+    })
+  }, []);
+
+  return (
+    <>
+      {
+        heros?.map(h => <p key={h.name}>{h.name}</p>)
+      }
+    </>
   )
 }
 
