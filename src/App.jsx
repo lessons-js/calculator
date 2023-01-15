@@ -7,6 +7,8 @@ const calc = (a, b, op) => {
     case '-': return a - b;
     case '*': return a * b;
     case '/': return a / b;
+    case '^': return a ** b;
+    case '%': return a % b;
 
     default: return 'Unsupported operator';
   }
@@ -37,6 +39,8 @@ const App = () => {
           <Operator selected={operator} onClick={onOperatorChange} operator='-' />
           <Operator selected={operator} onClick={onOperatorChange} operator='*' />
           <Operator selected={operator} onClick={onOperatorChange} operator='/' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='^' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='%' />
         </div>
       </div>
       <p>Result: {result}</p>
