@@ -17,8 +17,8 @@ const App = () => {
   const [b, setB] = useState(0);
   const [operator, setOperator] = useState('+');
 
-  const onAChange = (e) => setA(+e.target.value || '');
-  const onBChange = (e) => setB(+e.target.value || '');
+  const onAChange = (e) => setA(+e.target.value || 0);
+  const onBChange = (e) => setB(+e.target.value || 0);
   const onOperatorChange = (op) => {
     setOperator(op);
   }
