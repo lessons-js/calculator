@@ -17,8 +17,8 @@ const App = () => {
   const [b, setB] = useState(0);
   const [operator, setOperator] = useState('+');
 
-  const onAChange = (e) => setA(+e.target.value);
-  const onBChange = (e) => setB(+e.target.value);
+  const onAChange = (e) => setA(+e.target.value || '');
+  const onBChange = (e) => setB(+e.target.value || '');
   const onOperatorChange = (op) => {
     setOperator(op);
   }
@@ -29,8 +29,8 @@ const App = () => {
     <div className="App">
       <div>
         <div className="values">
-          <input onChange={onAChange} />
-          <input onChange={onBChange} />
+          <input type='number' onChange={onAChange} />
+          <input type='number' onChange={onBChange} />
         </div>
         <div>
           <Operator selected={operator} onClick={onOperatorChange} operator='+' />
