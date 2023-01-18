@@ -1,30 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
-const calc = (a, b, op) => {
-  switch(op) {
-    case '+': return a + b;
-    case '-': return a - b;
-    case '*': return a * b;
-    case '/': return a / b;
 
-    default: return 'Unsupported operator';
-  }
+const send = (a, b , operator, callback) => {
+  const body = JSON.stringify({ a, b});
+  const headers = { 'Content-Type': 'application/json'};
+  fetch(`http://localhost:3001/calc/${operator}`, {method:'POST',headers, body}).then(res => res.json()).then(res => {
+    callback(res);
+  })
 }
 
 const App = () => {
   const [a, setA] = useState(0);
   const [b, setB] = useState(0);
+  const [result, setResult] = useState([]);
   const [operator, setOperator] = useState('+');
 
   const onAChange = (e) => setA(+e.target.value || 0);
   const onBChange = (e) => setB(+e.target.value || 0);
   const onOperatorChange = (op) => {
     setOperator(op);
-  }
-
-  const result = calc(a, b, operator);
-
+  };
+  const sumbite = () => {
+    send(a, b, operator, (res) => {
+      setResult(res.result);
+    });
+  };
   return (
     <div className="App">
       <div>
@@ -33,15 +34,17 @@ const App = () => {
           <input type='number' onChange={onBChange} />
         </div>
         <div>
-          <Operator selected={operator} onClick={onOperatorChange} operator='+' />
-          <Operator selected={operator} onClick={onOperatorChange} operator='-' />
-          <Operator selected={operator} onClick={onOperatorChange} operator='*' />
-          <Operator selected={operator} onClick={onOperatorChange} operator='/' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='plus' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='minus' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='multiply' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='divide' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='involve' />
+          <Operator selected={operator} onClick={onOperatorChange} operator='remainder' />
+          <Operator onClick={sumbite} operator='=' />
         </div>
       </div>
       <p>Result: {result}</p>
       <hr />
-      <Heros />
     </div>
   );
 }
@@ -52,22 +55,6 @@ const Operator = ({ operator, onClick, selected }) => {
   )
 }
 
-const Heros = () => {
-  const [heros, setHeros] = useState([])
 
-  useEffect(() => {
-    fetch('https://swapi.dev/api/people/').then(res => res.json()).then(res => {
-      setHeros(res.results);
-    })
-  }, []);
-
-  return (
-    <>
-      {
-        heros?.map(h => <p key={h.name}>{h.name}</p>)
-      }
-    </>
-  )
-}
 
 export default App;
