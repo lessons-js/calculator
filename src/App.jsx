@@ -5,9 +5,7 @@ import './App.css';
 const send = (a, b , operator, setResult) => {
   const body = JSON.stringify({ a, b});
   const headers = { 'Content-Type': 'application/json'};
-  new Promise(() => {fetch(`http://localhost:3001/calc/${operator}`, {method:'POST',headers, body}).then(res => res.json()).then(res => {
-      setResult(res.result)
-  })})
+  return fetch(`http://localhost:3001/calc/${operator}`, {method:'POST',headers, body})
 }
 
 const App = () => {
@@ -22,7 +20,9 @@ const App = () => {
     setOperator(op);
   };
   const sumbite = () => {
-    send(a, b, operator, setResult);
+    send(a, b, operator).then(res => res.json()).then(res => {
+      setResult(res.result)
+    })
   };
   return (
     <div className="App">
