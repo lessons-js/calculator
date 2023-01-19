@@ -2,12 +2,12 @@ import { useState } from 'react';
 import './App.css';
 
 
-const send = (a, b , operator, callback) => {
+const send = (a, b , operator, setResult) => {
   const body = JSON.stringify({ a, b});
   const headers = { 'Content-Type': 'application/json'};
-  fetch(`http://localhost:3001/calc/${operator}`, {method:'POST',headers, body}).then(res => res.json()).then(res => {
-    callback(res);
-  })
+  new Promise(() => {fetch(`http://localhost:3001/calc/${operator}`, {method:'POST',headers, body}).then(res => res.json()).then(res => {
+      setResult(res.result)
+  })})
 }
 
 const App = () => {
@@ -22,9 +22,7 @@ const App = () => {
     setOperator(op);
   };
   const sumbite = () => {
-    send(a, b, operator, (res) => {
-      setResult(res.result);
-    });
+    send(a, b, operator, setResult);
   };
   return (
     <div className="App">
