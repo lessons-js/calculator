@@ -13,6 +13,9 @@ export default function Header() {
         <li>
           <NavLink to="/max">Max</NavLink>
         </li>
+        <li>
+          <NavLink to="/alex">Alex</NavLink>
+        </li>
       </ul>
     </nav>
     </header>
