@@ -4,6 +4,8 @@ import Home from '../pages/home';
 import Max from '../pages/max';
 import Alex from '../pages/alex';
 import Makar from '../pages/makar';
+import Kirill from '../pages/kirill';
+
 
 const Router = () => (
   <BrowserRouter>
@@ -13,6 +15,7 @@ const Router = () => (
       <Route path="/max" element={<Max />} />
       <Route path="/alex" element={<Alex />} />
       <Route path="/makar" element={<Makar/>}/>
+      <Route path="/kirill" element={<Kirill/>}/>
     </Routes>
   </BrowserRouter>
 );
