@@ -22,6 +22,9 @@ export default function Header() {
         <li>
           <NavLink to="/kirill">Kirill</NavLink>
         </li>
+        <li>
+          <NavLink to="/dannik">Dannik</NavLink>
+        </li>
       </ul>
     </nav>
     </header>

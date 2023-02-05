@@ -5,6 +5,9 @@ import Max from '../pages/max';
 import Alex from '../pages/alex';
 import Makar from '../pages/makar';
 import Kirill from '../pages/kirill';
+import Dannik from '../pages/mdannik';
+
+
 
 
 const Router = () => (
@@ -16,6 +19,7 @@ const Router = () => (
       <Route path="/alex" element={<Alex />} />
       <Route path="/makar" element={<Makar/>}/>
       <Route path="/kirill" element={<Kirill/>}/>
+      <Route path="/dannik" element={<Dannik/>}/>
     </Routes>
   </BrowserRouter>
 );
