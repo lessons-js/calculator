@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-export default function MyComponent() {
+export default function App() {
   const [a, setA] = useState(0);
   const [b, setB] = useState(0);
   const[result, setResult] = useState('');
@@ -48,6 +48,7 @@ const final = () => {
       <p>Result: {result}</p>
       <hr />
     </div>
+    
   );
 }
 
